@@ -44,7 +44,7 @@ class Generator extends Base{
 		}  
 		
 		// *******************
-		// TEST 2
+		// TEST 3
 		// *******************
 		/*$path = realpath('../../');
 
