@@ -42,6 +42,10 @@ class Generator extends Base{
     			echo $fileinfo->getPathname() . "<br>";
     		}
 		}  
+		
+		// *******************
+		// TEST
+		// *******************
 		/*$path = realpath('../../');
 
 		$objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST  );
