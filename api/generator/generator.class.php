@@ -21,8 +21,13 @@ class Generator extends Base{
 	}
 	
 	public function getDirStructure(){
-	
-		$path = realpath('../../');
+		
+		$output = array();
+		exec( " ls -R ../.. | grep ':$' | grep -v '.git'", $output );
+
+		print_r( $output );
+				
+		/*$path = realpath('../../');
 		
 		//Directory iterator
 		$dit = new RecursiveDirectoryIterator( $path );
