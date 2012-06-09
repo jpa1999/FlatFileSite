@@ -2,7 +2,8 @@
 
 class Base{
 
-
+	var $original_dir;
+	
 	public function Base(){
 	
 	}
@@ -25,8 +26,16 @@ class Base{
 		}
 		return false;
 	}
+	//---------------------------
+	//
+	//----------------------------
+	/*function normalizeDir(){
+		chdir( "../..");
+		$this->original_dir = getcwd();	
+		$this->log( "Main dir:" . $this->original_dir );
+	}*/
 	//--------------------------
-	// Include 
+	// LOG 
 	//--------------------------
 	function log( $message ) {
 		echo "---------------------------<br>\n";

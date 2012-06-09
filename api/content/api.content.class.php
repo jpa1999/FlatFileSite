@@ -7,28 +7,21 @@ class Content extends Base{
 
 	var $path = "data/content/";
 	
-	public function Content(){
-		echo "Api.Content";
-	}
+	public function Content(){}
 	
 	public function create(){
-		chdir( "../.." );
-		 
 		$this->checkFolders( $_GET['file'] );
-		
 		file_put_contents( $this->path . $_GET['file'] . "/index.html",  $_GET['content']  );
 	}
 	
 	public function checkFolders( $path ){
 		
-		echo "Path:" . $path;
-		 
 		$exploded_path = explode( "/", $path );
 		$traversed_path = "";
 		
 		for( $i=0;$i<count($exploded_path);$i++ ){
 			$this->checkFolder( $this->path . $traversed_path . $exploded_path[$i] );
-			$traversed_path .= "/" .$exploded_path[$i] ."/";
+			$traversed_path .= $exploded_path[$i] ."/";
 		}
 	}
 	
