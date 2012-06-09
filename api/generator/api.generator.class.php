@@ -1,12 +1,13 @@
 <?PHP
 
-include "../base.class.php";
+require_once "../base.class.php";
+require_once "../content/api.folders.php";
 
 class Generator extends Base{
 
+	var $folders = new Folders();
 	
 	public function Generator(){
-		
 		$this->log( "Generator" );
 	}
 	
@@ -24,9 +25,14 @@ class Generator extends Base{
 	}
 	
 	public function createFullSite(){
-		$files = file( "data/structure/list/index.html" );
-		print_r( $files );
-		foreach( $files as $file ){}
+		
+		$paths = file( "data/structure/list/index.html" );	
+		$main = $this->get_include_contents("templates/main.tpl.php");
+		
+		foreach( $paths as $path ){
+			$folders->checkFolders( $path );
+			file_put_contents( $path . "/index.html", $main );
+		}
 		
 	}
 	
@@ -71,9 +77,6 @@ class Generator extends Base{
 		file_put_contents( $data_folder . "data/structure/html_list/index.html", 	$html_list );
 	}
 	
-	public function changeDirectory(){
-		
-	}
 	
 
 }
