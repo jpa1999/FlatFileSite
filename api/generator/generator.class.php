@@ -22,10 +22,38 @@ class Generator extends Base{
 	
 	public function getDirStructure(){
 		
+		
 		$output = array();
-		exec( " ls -R ../.. | grep ':$' | grep -v '.git'", $output );
-
+		//| grep -v '.git
+		//List -Recursively | choose everyline that end to : | 
+		exec( "ls -R ../.. | grep ':$' | sed -e 's/:$//' -e 's/\.\.\/\.\.\///' | grep -v '\.' ", $output );
+		
 		print_r( $output );
+		
+		//Print list out
+		$output_string = "";
+		
+		$level = 0;
+		
+		for( $i=0; $i< count( $output ); $i++ ){
+			
+			$components = explode( "/", $output[$i] );
+			$previous_level = $level;
+			$level = count( $components );
+			
+			if( $level > $previous_level ) $output_string .= "<ul>";
+			if( $level < $previous_level ) $output_string .= "</ul>";
+			
+			$output_string .= "<li>" . array_pop( $components ) . "</li>";
+			
+			//print_r( $components );
+		
+		
+		}
+		
+		echo $output_string;
+		
+		//print_r( $output );
 				
 		/*$path = realpath('../../');
 		
