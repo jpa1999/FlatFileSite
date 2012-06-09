@@ -17,7 +17,7 @@ class Base{
 	//--------------------------
 	// Include 
 	//--------------------------
-	function get_include_contents($filename) {
+	function get_include_contents( $filename ) {
 		if (is_file($filename)) {
 			ob_start();
 			include $filename;
@@ -25,6 +25,15 @@ class Base{
 		}
 		return false;
 	}
+	//--------------------------
+	// Include 
+	//--------------------------
+	function log( $message ) {
+		echo "---------------------------<br>\n";
+		echo $message . "<br>\n";
+	}
+	
+	
 }
 
 
