@@ -26,7 +26,17 @@ class Generator extends Base{
 		$output = array();
 		//| grep -v '.git
 		//List -Recursively | choose everyline that end to : | 
-		exec( "ls -R ../.. | grep ':$' | sed -e 's/:$//' -e 's/\.\.\/\.\.\///' | grep -v '\.' ", $output );
+		/*$list_recursively 			= "ls -R ../.. ";
+		$grep_folders_only 			= "| grep ':$' ";
+		$remove_path_and_ending 	= "| sed -e 's/:$//' -e 's/\.\.\/\.\.\///' ";
+		$grep_dot_folders_out 		= "| grep -v '\.'";
+		
+		exec( $list_recursively.$grep_folders_only.$remove_path_and_ending.$grep_dot_folders_out, $output );*/
+		
+		exec( "find ../.. -type d -name '[^.]*' -print | sed -e 's/\.\.\/\.\.\///' | grep -v '\.' ", $output );
+		
+		//exec( "find . -type d ! -regex '.*/[.].*'", $output );
+		
 		
 		print_r( $output );
 		
