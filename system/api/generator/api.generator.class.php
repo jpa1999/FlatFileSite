@@ -33,9 +33,11 @@ class Generator extends Base{
 			
 			$path = trim( $path );
 			
-			$main = $this->get_include_contents("templates/main.tpl.php", "data/content/" . $path . "/index.html" );
-			$this->folders->checkFolders( $path );
+			$main = $this->get_include_contents("templates/main.tpl.php", "data/content/" . $path . "/data/content/index.html" );
+			$this->folders->checkFolders( "../" . $path );
 			file_put_contents( "../" . $path . "/index.html", $main );
+			
+			exec( "cp -r data/content/" . $path . "/data ../" . $path . "/data" );
 		}
 		
 	}
@@ -44,7 +46,7 @@ class Generator extends Base{
 		
 		chdir( "data/content" );	
 		$directories = array();
-		exec( "find . -type d -regex './[^.].*'", $directories );
+		exec( "find . -type d -regex './[^.].*' | grep -v 'data' ", $directories );
 		chdir( "../.." );
 		
 		print_r( $directories );
